@@ -45,6 +45,8 @@
 }
 
 .up-arrow {
+  background: none;
+  border: none;
   position: absolute;
   top: 10px;
   left: 50%;
@@ -52,6 +54,8 @@
 }
 
 .down-arrow {
+  background: none;
+  border: none;
   position: absolute;
   bottom: 10px;
   left: 50%;
