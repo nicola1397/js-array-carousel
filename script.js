@@ -47,51 +47,22 @@ for (i = 0; i < currentSlide.length; i++) {
 // ARROW DOWN
 arrowDown.addEventListener("click", function () {
   slideIndex = slideIndex + 1;
-  //   REMOVE ACTIVE CLASS
-  let oldSlide = document.querySelectorAll(`.active`);
-  for (i = 0; i < oldSlide.length; i++) {
-    oldSlide[i].classList.remove("active");
-  }
+  replaceFull();
 
-  //   NEW SLIDE ACTIVE
-  currentSlide = document.querySelectorAll(
-    `[data-index="${slidesAltArray[slideIndex]}"]`
-  );
-  for (i = 0; i < currentSlide.length; i++) {
-    currentSlide[i].className += " active";
-  }
   console.log("giu", slideIndex);
 
   //   LOOP
   if (slideIndex > slidesAltArray.length - 1) {
     slideIndex = 0;
-    currentSlide = document.querySelectorAll(
-      `[data-index="${slidesAltArray[slideIndex]}"]`
-    );
-    console.log("slide ottenuta", currentSlide);
-    for (i = 0; i < currentSlide.length; i++) {
-      currentSlide[i].className += " active";
-    }
-    console.log("looped");
+    currentAdd();
   }
 });
 
 // ARROW UP
 arrowUp.addEventListener("click", function () {
   slideIndex = slideIndex - 1;
-  //   REMOVE ACTIVE CLASS
-  let oldSlide = document.querySelectorAll(`.active`);
-  for (i = 0; i < oldSlide.length; i++) {
-    oldSlide[i].classList.remove("active");
-  }
+  replaceFull();
 
-  //   NEW SLIDE ACTIVE
-  currentSlide = document.querySelectorAll(
-    `[data-index="${slidesAltArray[slideIndex]}"]`
-  );
-  for (i = 0; i < currentSlide.length; i++) {
-    currentSlide[i].className += " active";
-  }
   console.log("su", slideIndex);
 
   //   LOOP
@@ -99,13 +70,7 @@ arrowUp.addEventListener("click", function () {
   if (slideIndex < 0) {
     slideIndex = slidesAltArray.length - 1;
     console.log(slideIndex, "loop meno");
-    currentSlide = document.querySelectorAll(
-      `[data-index="${slidesAltArray[slideIndex]}"]`
-    );
-    for (i = 0; i < currentSlide.length; i++) {
-      currentSlide[i].className += " active";
-    }
-    console.log("looped");
+    currentAdd();
   }
 });
 
@@ -118,19 +83,32 @@ for (let i = 0; i < slidesAltArray.length; i++) {
   thumbnail[i].addEventListener("click", function () {
     slideIndex = i;
     console.log("new slide", slideIndex);
-    //   REMOVE OLD ACTIVE
-    let oldSlide = document.querySelectorAll(`.active`);
-    for (i = 0; i < oldSlide.length; i++) {
-      oldSlide[i].classList.remove("active");
-    }
-    //   NEW SLIDE ACTIVE
-    currentSlide = document.querySelectorAll(
-      `[data-index="${slidesAltArray[slideIndex]}"]`
-    );
-    for (i = 0; i < currentSlide.length; i++) {
-      currentSlide[i].className += " active";
-    }
+    replaceFull();
     i = slideIndex;
     console.log("valore index" + i);
   });
+}
+
+function replaceFull() {
+  //   REMOVE OLD ACTIVE
+  let oldSlide = document.querySelectorAll(`.active`);
+  for (i = 0; i < oldSlide.length; i++) {
+    oldSlide[i].classList.remove("active");
+  }
+  //   NEW SLIDE ACTIVE
+  currentSlide = document.querySelectorAll(
+    `[data-index="${slidesAltArray[slideIndex]}"]`
+  );
+  for (i = 0; i < currentSlide.length; i++) {
+    currentSlide[i].className += " active";
+  }
+}
+
+function currentAdd() {
+  currentSlide = document.querySelectorAll(
+    `[data-index="${slidesAltArray[slideIndex]}"]`
+  );
+  for (i = 0; i < currentSlide.length; i++) {
+    currentSlide[i].className += " active";
+  }
 }
