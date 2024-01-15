@@ -1,7 +1,17 @@
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+}
+
 .thumbnailContainer {
   position: absolute;
   top: 50%;
+  left: -150px;
+}
+
+.carouselContainer:hover .thumbnailContainer {
   left: 20px;
+  transition: 1s;
 }
 
 .thumbnail {
@@ -16,5 +26,11 @@
   border: 2px solid white;
 }
 
-.slide {
+.arrow {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carouselContainer:hover .arrow {
+  opacity: 1;
 }
