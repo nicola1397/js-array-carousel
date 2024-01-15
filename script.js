@@ -21,27 +21,25 @@ for (let i = 0; i < slides.length; i++) {
 }
 
 slideContainer.innerHTML = slidesDOM;
-
+let thumbClick = 0;
 // THUMBNAILS
 let thumbnailDOM = "";
 for (let i = 0; i < slides.length; i++) {
   const slide = slides[i];
   const customIndex = slidesAltArray[i];
-  thumbnailDOM += `<img src="./img/${slide}" alt="${slide}" class="thumbnail" data-index="${customIndex}"/>`;
+  thumbnailDOM += `<img src="./img/${slide}" alt="${slide}" class="thumbnail" data-index="${customIndex}" id="thumb-${customIndex}"/>`;
+  thumbClick = customIndex;
 }
 
 thumbnailContainer.innerHTML = thumbnailDOM;
 
 // ACTIVE SLIDE MANAGEMENT
 
-console.log("cotoletta");
-
 let slideIndex = 0;
 
 let currentSlide = document.querySelectorAll(
   `[data-index="${slidesAltArray[slideIndex]}"]`
 );
-console.log("slide ottenuta", currentSlide);
 for (i = 0; i < currentSlide.length; i++) {
   currentSlide[i].className += " active";
 }
@@ -110,3 +108,29 @@ arrowUp.addEventListener("click", function () {
     console.log("looped");
   }
 });
+
+// THUMBNAIL NAVIGATION
+
+const thumbnail = thumbnailContainer.querySelectorAll(`[id|="thumb"]`);
+
+// TEST CICLO
+for (let i = 0; i < slidesAltArray.length; i++) {
+  thumbnail[i].addEventListener("click", function () {
+    slideIndex = i;
+    console.log("new slide", slideIndex);
+    //   REMOVE OLD ACTIVE
+    let oldSlide = document.querySelectorAll(`.active`);
+    for (i = 0; i < oldSlide.length; i++) {
+      oldSlide[i].classList.remove("active");
+    }
+    //   NEW SLIDE ACTIVE
+    currentSlide = document.querySelectorAll(
+      `[data-index="${slidesAltArray[slideIndex]}"]`
+    );
+    for (i = 0; i < currentSlide.length; i++) {
+      currentSlide[i].className += " active";
+    }
+    i = slideIndex;
+    console.log("valore index" + i);
+  });
+}
