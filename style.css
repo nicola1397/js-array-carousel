@@ -1,12 +1,18 @@
 .carouselContainer {
   position: relative;
   overflow: hidden;
+  height: 900px;
+  width: 900px;
+  vertical-align: middle;
 }
 
 .thumbnailContainer {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: -150px;
+  transform: translate(0, -50%);
 }
 
 .carouselContainer:hover .thumbnailContainer {
@@ -26,11 +32,54 @@
   border: 2px solid white;
 }
 
-.arrow {
+/* ARROWS */
+.bi {
   opacity: 0;
+  color: white;
+  font-size: 2rem;
+}
+
+.carouselContainer:hover .bi {
+  opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
 
-.carouselContainer:hover .arrow {
-  opacity: 1;
+.up-arrow {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.down-arrow {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.slideContainer {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+}
+
+.slide.active {
+  display: block;
+}
+
+.hoverControls {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }

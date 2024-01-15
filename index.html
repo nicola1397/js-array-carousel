@@ -11,20 +11,42 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- MY CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-dark">
-    <h1 class="display-1 fw-bold text-white">JAVASCRIPT CAROUSEL</h1>
-
-    <div class="carouselContainer" id="carousel">
+    <h1 class="display-1 fw-bold text-white text-center my-4">
+      JAVASCRIPT CAROUSEL
+    </h1>
+    <!-- CAROSELLO -->
+    <div class="carouselContainer mx-auto my-4" id="carousel">
+      <!-- CONTAINER SLIDES -->
       <div class="slideContainer">
-        <img src="./img/01.webp" alt="01" class="slide" />
+        <img src="./img/01.webp" alt="01" class="slide active" />
         <img src="./img/02.webp" alt="02" class="slide" />
         <img src="./img/03.webp" alt="03" class="slide" />
         <img src="./img/04.webp" alt="04" class="slide" />
         <img src="./img/05.webp" alt="05" class="slide" />
       </div>
-      <div class="thumbnailContainer"></div>
+      <div class="hoverControls">
+        <!-- ARROW UP -->
+        <i class="bi bi-arrow-up-circle-fill up-arrow"></i>
+        <!-- THUMBNAILS -->
+        <div class="thumbnailContainer">
+          <img src="./img/01.webp" alt="01" class="thumbnail active" />
+          <img src="./img/02.webp" alt="02" class="thumbnail" />
+          <img src="./img/03.webp" alt="03" class="thumbnail" />
+          <img src="./img/04.webp" alt="04" class="thumbnail" />
+          <img src="./img/05.webp" alt="05" class="thumbnail" />
+        </div>
+        <!-- ARROW DOWN -->
+        <i class="bi bi-arrow-down-circle-fill down-arrow"></i>
+      </div>
     </div>
 
     <!-- JAVASCRIPT -->
