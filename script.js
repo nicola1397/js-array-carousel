@@ -41,13 +41,13 @@ let slideIndex = 0;
 let currentSlide = document.querySelectorAll(
   `[data-index="${slidesAltArray[slideIndex]}"]`
 );
-console.log(currentSlide);
+console.log("slide ottenuta", currentSlide);
 for (i = 0; i < currentSlide.length; i++) {
   currentSlide[i].className += " active";
 }
 
-// ARROW UP
-arrowUp.addEventListener("click", function () {
+// ARROW DOWN
+arrowDown.addEventListener("click", function () {
   slideIndex = slideIndex + 1;
   //   REMOVE ACTIVE CLASS
   let oldSlide = document.querySelectorAll(`.active`);
@@ -62,16 +62,51 @@ arrowUp.addEventListener("click", function () {
   for (i = 0; i < currentSlide.length; i++) {
     currentSlide[i].className += " active";
   }
-  console.log("su", currentSlide);
+  console.log("giu", slideIndex);
+
+  //   LOOP
+  if (slideIndex > slidesAltArray.length - 1) {
+    slideIndex = 0;
+    currentSlide = document.querySelectorAll(
+      `[data-index="${slidesAltArray[slideIndex]}"]`
+    );
+    console.log("slide ottenuta", currentSlide);
+    for (i = 0; i < currentSlide.length; i++) {
+      currentSlide[i].className += " active";
+    }
+    console.log("looped");
+  }
 });
 
-// ARROW DOWN
-arrowDown.addEventListener("click", function () {
-  console.log("giù");
+// ARROW UP
+arrowUp.addEventListener("click", function () {
   slideIndex = slideIndex - 1;
-  let currentSlide = document.querySelectorAll(
+  //   REMOVE ACTIVE CLASS
+  let oldSlide = document.querySelectorAll(`.active`);
+  for (i = 0; i < oldSlide.length; i++) {
+    oldSlide[i].classList.remove("active");
+  }
+
+  //   NEW SLIDE ACTIVE
+  currentSlide = document.querySelectorAll(
     `[data-index="${slidesAltArray[slideIndex]}"]`
   );
-  // .classList.add("active");
-  // .classList.remove("active");
+  for (i = 0; i < currentSlide.length; i++) {
+    currentSlide[i].className += " active";
+  }
+  console.log("su", slideIndex);
+
+  //   LOOP
+
+  if (slideIndex < 0) {
+    slideIndex = slidesAltArray.length - 1;
+    console.log(slideIndex, "loop meno");
+    currentSlide = document.querySelectorAll(
+      `[data-index="${slidesAltArray[slideIndex]}"]`
+    );
+    for (i = 0; i < currentSlide.length; i++) {
+      currentSlide[i].className += " active";
+    }
+    console.log("looped");
+  }
 });
