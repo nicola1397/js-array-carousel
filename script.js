@@ -1,5 +1,4 @@
 // CONTAINERS
-const carousel = document.getElementById("carousel");
 const slideContainer = document.getElementById("slideContainer");
 const hoverContainer = document.getElementById("hoverContainer");
 const thumbnailContainer = document.getElementById("thumbnailContainer");
@@ -9,36 +8,26 @@ const arrowUp = document.getElementById("up");
 const arrowDown = document.getElementById("down");
 
 // ARRAY SLIDES
-const slides = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
-const slidesAltArray = ["01", "02", "03", "04", "05"];
+const slides = ["01", "02", "03", "04", "05"];
 
 // SLIDES
+let thumbnailDOM = "";
 let slidesDOM = "";
 for (let i = 0; i < slides.length; i++) {
   const slide = slides[i];
-  const customIndex = slidesAltArray[i];
-  slidesDOM += `<img src="./img/${slide}" alt="${slide}" class="slide" data-index="${customIndex}"/>`;
+  slidesDOM += `<img src="./img/${slide}.webp" alt="${slide}" class="slide" data-index="${slide}"/>`;
+  thumbnailDOM += `<img src="./img/${slide}.webp" alt="${slide}" class="thumbnail" data-index="${slide}" id="thumb-${slide}"/>`;
 }
 
 slideContainer.innerHTML = slidesDOM;
-let thumbClick = 0;
-// THUMBNAILS
-let thumbnailDOM = "";
-for (let i = 0; i < slides.length; i++) {
-  const slide = slides[i];
-  const customIndex = slidesAltArray[i];
-  thumbnailDOM += `<img src="./img/${slide}" alt="${slide}" class="thumbnail" data-index="${customIndex}" id="thumb-${customIndex}"/>`;
-  thumbClick = customIndex;
-}
-
 thumbnailContainer.innerHTML = thumbnailDOM;
 
 // ACTIVE SLIDE MANAGEMENT
-
+let thumbClick = 0;
 let slideIndex = 0;
 
 let currentSlide = document.querySelectorAll(
-  `[data-index="${slidesAltArray[slideIndex]}"]`
+  `[data-index="${slides[slideIndex]}"]`
 );
 for (i = 0; i < currentSlide.length; i++) {
   currentSlide[i].className += " active";
@@ -52,7 +41,7 @@ arrowDown.addEventListener("click", function () {
   console.log("giu", slideIndex);
 
   //   LOOP
-  if (slideIndex > slidesAltArray.length - 1) {
+  if (slideIndex > slides.length - 1) {
     slideIndex = 0;
     currentAdd();
   }
@@ -68,7 +57,7 @@ arrowUp.addEventListener("click", function () {
   //   LOOP
 
   if (slideIndex < 0) {
-    slideIndex = slidesAltArray.length - 1;
+    slideIndex = slides.length - 1;
     console.log(slideIndex, "loop meno");
     currentAdd();
   }
@@ -79,7 +68,7 @@ arrowUp.addEventListener("click", function () {
 const thumbnail = thumbnailContainer.querySelectorAll(`[id|="thumb"]`);
 
 // TEST CICLO
-for (let i = 0; i < slidesAltArray.length; i++) {
+for (let i = 0; i < slides.length; i++) {
   thumbnail[i].addEventListener("click", function () {
     slideIndex = i;
     console.log("new slide", slideIndex);
@@ -97,7 +86,7 @@ function replaceFull() {
   }
   //   NEW SLIDE ACTIVE
   currentSlide = document.querySelectorAll(
-    `[data-index="${slidesAltArray[slideIndex]}"]`
+    `[data-index="${slides[slideIndex]}"]`
   );
   for (i = 0; i < currentSlide.length; i++) {
     currentSlide[i].className += " active";
@@ -106,7 +95,7 @@ function replaceFull() {
 
 function currentAdd() {
   currentSlide = document.querySelectorAll(
-    `[data-index="${slidesAltArray[slideIndex]}"]`
+    `[data-index="${slides[slideIndex]}"]`
   );
   for (i = 0; i < currentSlide.length; i++) {
     currentSlide[i].className += " active";
