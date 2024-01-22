@@ -32,35 +32,16 @@ let currentSlide = document.querySelectorAll(
 for (i = 0; i < currentSlide.length; i++) {
   currentSlide[i].className += " active";
 }
-
 // ARROW DOWN
 arrowDown.addEventListener("click", function () {
-  slideIndex = slideIndex + 1;
-  replaceFull();
-
+  Down();
   console.log("giu", slideIndex);
-
-  //   LOOP
-  if (slideIndex > slides.length - 1) {
-    slideIndex = 0;
-    currentAdd();
-  }
 });
 
 // ARROW UP
 arrowUp.addEventListener("click", function () {
-  slideIndex = slideIndex - 1;
-  replaceFull();
-
+  Up();
   console.log("su", slideIndex);
-
-  //   LOOP
-
-  if (slideIndex < 0) {
-    slideIndex = slides.length - 1;
-    console.log(slideIndex, "loop meno");
-    currentAdd();
-  }
 });
 
 // THUMBNAIL NAVIGATION
@@ -93,11 +74,31 @@ function replaceFull() {
   }
 }
 
-function currentAdd() {
-  currentSlide = document.querySelectorAll(
-    `[data-index="${slides[slideIndex]}"]`
-  );
-  for (i = 0; i < currentSlide.length; i++) {
-    currentSlide[i].className += " active";
+function Down() {
+  slideIndex = slideIndex + 1;
+  if (slideIndex > slides.length - 1) {
+    slideIndex = 0;
   }
+  replaceFull();
 }
+
+function Up() {
+  slideIndex = slideIndex - 1;
+  if (slideIndex < 0) {
+    slideIndex = slides.length - 1;
+    console.log(slideIndex, "loop meno");
+  }
+  replaceFull();
+}
+// AUTO SCROLL
+const timedScroll = setInterval(Down, 3000);
+
+hoverContainer.addEventListener("mouseover", function () {
+  clearInterval(timedScroll);
+  console.log("Timer cleared");
+});
+
+hoverContainer.addEventListener("mouseout", function () {
+  const timedScroll = setInterval(Down, 3000);
+  console.log("Timer restarted");
+});
