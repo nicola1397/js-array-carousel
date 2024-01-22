@@ -91,7 +91,7 @@ function Up() {
   replaceFull();
 }
 // AUTO SCROLL
-const timedScroll = setInterval(Down, 3000);
+let timedScroll = setInterval(Down, 3000);
 
 hoverContainer.addEventListener("mouseover", function () {
   clearInterval(timedScroll);
@@ -99,6 +99,6 @@ hoverContainer.addEventListener("mouseover", function () {
 });
 
 hoverContainer.addEventListener("mouseout", function () {
-  const timedScroll = setInterval(Down, 3000);
+  timedScroll = setInterval(Down, 3000);
   console.log("Timer restarted");
 });
